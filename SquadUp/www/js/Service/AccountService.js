@@ -6,13 +6,17 @@ module.service('AccountService', ['$http', function ($http) {
     var service = {};
 
     service.Login = function (Username, Password) {
-        return $http.get(baseurl + "/api/Login?Username=" + Username + "&Password=" + Password).success(function (data) {
-            if (data != null) {
-                return data;
-            } else {
+        return $http.get(baseurl + "/api/Login?Username=" + Username + "&Password=" + Password)
+            .success(function (data) {
+                if (data != null) {
+                    return data;
+                } else {
+                    return {};
+                }
+            })
+            .error(function () {
                 return {};
-            }
-        });
+            });
     };
     
     return service;

@@ -15,6 +15,7 @@ namespace SquadUp.Data.Controllers
         [HttpGet]
         public User Login(string Username, string Password)
         {
+            db.Database.Connection.Open();
             return db.Users.Where(x => x.FirstName == Username && x.Password == Password).FirstOrDefault();
         }
 
