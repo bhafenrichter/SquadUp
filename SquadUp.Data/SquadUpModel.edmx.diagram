@@ -6,6 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="63ff1658fef344d5a714c706cd902436" Name="Diagram1">
         <EntityTypeShape EntityType="SportsMeetupDBModel.User" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SportsMeetupDBModel.Friend" Width="1.5" PointX="3" PointY="1.375" />
+        <AssociationConnector Association="SportsMeetupDBModel.FK_Friend_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

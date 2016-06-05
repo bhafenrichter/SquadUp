@@ -50,6 +50,16 @@ routes.config(function($stateProvider, $urlRouterProvider){
         }
     })
 
+    .state('Menu.FriendsList', {
+        url: '/FriendsList',
+        views: {
+            'MenuContent': {
+                templateUrl: 'View/FriendsList.html',
+                controller: 'FriendsListController'
+            }
+        }
+    })
+
     
 
     // if none of the above states are matched, use this as the fallback

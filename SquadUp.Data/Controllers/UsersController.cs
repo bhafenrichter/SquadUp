@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
@@ -17,6 +18,33 @@ namespace SquadUp.Data.Controllers
         {
             db.Database.Connection.Open();
             return db.Users.Where(x => x.FirstName == Username && x.Password == Password).FirstOrDefault();
+        }
+
+        [Route("api/AddFriend")]
+        [HttpPost]
+        public void AddFriend(int UserId, int FriendId)
+        {
+            db.Database.Connection.Open();
+            //if they aren't already friends
+            if(db.Friends.Where(x => (x.UserID == UserId && x.FriendID == FriendId) || (x.UserID == FriendId && x.FriendID == UserId)).Count() == 0)
+            {
+                var Friend = db.Friends.Create();
+                Friend.FriendID = FriendId;
+                Friend.UserID = UserId;
+                db.Friends.Add(Friend);
+                db.SaveChanges();
+            }
+        }
+
+        [Route("api/GetFriends")]
+        [HttpGet]
+        public IEnumerable<Friend> GetFriendsList(int UserId)
+        {
+            db.Database.Connection.Open();
+            return db.Friends
+                .Include("User")
+                .Where(x => x.FriendID == UserId || x.UserID == UserId)
+                .ToList();
         }
 
         // GET: api/Users

@@ -26,5 +26,6 @@ namespace SquadUp.Data
         }
     
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Friend> Friends { get; set; }
     }
 }
